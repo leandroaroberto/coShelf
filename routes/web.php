@@ -22,7 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*Maker Routes */
 
 Route::get('/maker','Maker\makerController@index');
+Route::get('/inventoryList/{id}','Maker\makerController@inventoryShow');
 Route::get('/inventoryList','Maker\makerController@inventoryList');
+
 //Route::post('/inventoryList/Add','Maker\makerController@store');
 Route::post('/inventoryList/Add','Maker\makerController@storeProduct');
    

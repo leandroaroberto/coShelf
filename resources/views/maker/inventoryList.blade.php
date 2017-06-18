@@ -26,7 +26,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->price }}</td>            
                 <td>
-                    <span class="glyphicon glyphicon-search"></span>
+                    <a href="inventoryList/{{$product->product_id}}"><span class="glyphicon glyphicon-search"></span></a>
                     <span class="glyphicon glyphicon-edit"></span>
                     <span class="glyphicon glyphicon-remove"></span>
                 </td>

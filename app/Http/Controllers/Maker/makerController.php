@@ -19,6 +19,11 @@ class makerController extends Controller
         return view('maker.inventoryList')->withProducts($products);
     }
     
+    public function inventoryShow($product_id){
+        $products = makerProduct::find($product_id);
+        return view('maker.inventoryShow')->withProducts($products);
+    }
+    
     public function addProduct(){
         //show the form
         return view('maker.newProduct');                
