@@ -2,7 +2,7 @@
 @extends('layouts/app')
 @section('content')
 
-<div class="content">
+
     <h1>New Product</h1>  
     @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -33,6 +33,6 @@
     {{ Form::close() }}
     <br/>
     
-</div>
+
 
 @endsection

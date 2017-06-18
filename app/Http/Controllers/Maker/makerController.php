@@ -15,8 +15,10 @@ class makerController extends Controller
     }
     
     public function inventoryList(){
-        $products = makerProduct::all();
-        return view('maker.inventoryList')->withProducts($products);
+        /*$products = makerProduct::all();
+        return view('maker.inventoryList')->withProducts($products);*/
+        $products = makerProduct::all();        
+        return view('maker.inventoryList',array('products'=>$products, 'search'=> null));
     }
     
     public function inventoryShow($product_id){
@@ -46,9 +48,20 @@ class makerController extends Controller
         $product->requirements = $request->input('requirements');
         
         if($product->save())
-        {
-            echo "ok";
+        {               
+            return redirect()->action('Maker\makerController@inventoryList');
         }
         
     }
+    
+    public function searchProduct(Request $request){
+        //$products = makerProduct::all();
+        $products = makerProduct::where('name','LIKE',
+                '%'.$request->input('lookfor').'%')->orwhere('category',
+                'LIKE','%'.$request->input('lookfor').'%')->get();
+        return view('maker.inventoryList', array('products'=>$products,'search'=>$request->input('lookfor')));
+        
+        
+    }
+    
 }

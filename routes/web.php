@@ -29,7 +29,8 @@ Route::get('/inventoryList/{id?}','Maker\makerController@inventoryShow')->where(
 
 //Route::post('/inventoryList/Add','Maker\makerController@store');
 Route::post('/inventoryList/Add','Maker\makerController@storeProduct');
-   
+
+Route::post('/inventoryList/search','Maker\makerController@searchProduct');
 
 Route::get('/inventoryList/Add','Maker\makerController@addProduct');
 
