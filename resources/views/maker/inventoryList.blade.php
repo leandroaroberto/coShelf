@@ -8,6 +8,11 @@
     <hr width="80%">
     <p>Search Product: <input type="text" /> <span class="glyphicon glyphicon-search"></span></p>
     
+    
+    
+    
+    
+    
     <table class="table-bordered table-hover table-responsive" width="80%" align="center">
         <tr>
             <th></th>
@@ -15,16 +20,18 @@
             <th>Price</th>
             <th></th>
         </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>            
-            <td>
-                <span class="glyphicon glyphicon-search"></span>
-                <span class="glyphicon glyphicon-edit"></span>
-                <span class="glyphicon glyphicon-remove"></span>
-            </td>
-        </tr>
+        @foreach($products as $product)
+            <tr>
+                <td></td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->price }}</td>            
+                <td>
+                    <span class="glyphicon glyphicon-search"></span>
+                    <span class="glyphicon glyphicon-edit"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
+                </td>
+            </tr>
+        @endforeach
     </table>
 </div>
 

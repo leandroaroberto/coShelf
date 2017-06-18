@@ -15,7 +15,8 @@ class makerController extends Controller
     }
     
     public function inventoryList(){
-        return view('maker.inventoryList');
+        $products = makerProduct::all();
+        return view('maker.inventoryList')->withProducts($products);
     }
     
     public function addProduct(){
