@@ -23,3 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/maker','Maker\makerController@index');
 Route::get('/inventoryList','Maker\makerController@inventoryList');
+//Route::post('/inventoryList/Add','Maker\makerController@store');
+Route::post('/inventoryList/Add','Maker\makerController@storeProduct');
+   
+
+Route::get('/inventoryList/Add','Maker\makerController@addProduct');
+
+

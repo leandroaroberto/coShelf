@@ -4,7 +4,7 @@
 <div class='content'>
     <h1>Product Inventory List</h1>
     <p><a href='#'>Manage Categories</a></p>
-    <p><a href='#'>Add New Product</a></p>
+    <p><a href='/inventoryList/Add'>Add New Product</a></p>
     <hr width="80%">
     <p>Search Product: <input type="text" /> <span class="glyphicon glyphicon-search"></span></p>
     
