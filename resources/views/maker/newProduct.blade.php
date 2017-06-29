@@ -2,8 +2,13 @@
 @extends('layouts/app')
 @section('content')
 
-
-    <h1>New Product</h1>  
+    @if($ids)
+        <h1>Edit product</h1>
+        
+    @else
+        <h1>New Product</h1>  
+    @endif
+    
     @if(count($errors)>0)
     <div class="alert alert-danger">
         <ul>
@@ -15,21 +20,47 @@
     @endif
     {{ Form::open(['action' => 'Maker\makerController@storeProduct']) }}
     {{ Form::label('name','Name') }}
-    {{ Form::text('name','',['class'=>'form-control','required','placeholder'=>'Product Name']) }}
+        
+    @if($ids)
+        {{ Form::text("name","$ids->name",["class"=>"form-control","required","placeholder"=>"Product Name"]) }}
+    @else
+        {{ Form::text("name","",["class"=>"form-control","required","placeholder"=>"Product Name"]) }}
+    @endif
     <br />
     {{ Form::label('category','Category') }}
-    {{ Form::select('category',[''=>'','T-shirt'=>'T-shirt','Pants'=>'Pants','Black Tie'=>'Black Tie']) }}
+    @if($ids)
+        {{ Form::select("category",["$ids->category"=>"$ids->category","T-shirt"=>"T-shirt","Pants"=>"Pants","Black Tie"=>"Black Tie"]) }}
+    @else
+        {{ Form::select('category',[''=>'','T-shirt'=>'T-shirt','Pants'=>'Pants','Black Tie'=>'Black Tie']) }}
+    @endif
     <br />
     {{ Form::label('price','Price')}}
-    {{ Form::number('price','',['required'])}}
+    @if($ids)
+        {{ Form::number("price","$ids->price",["required"])}}
+    @else
+        {{ Form::number('price','',['required'])}}
+    @endif
     <br/>
     {{Form::label('description','Description')}}
-    {{Form::textarea('description','',['class'=>'form-control'])}}
+    @if($ids)
+        {{Form::textarea("description","$ids->description",["class"=>"form-control"])}}
+    @else
+        {{Form::textarea('description','',['class'=>'form-control'])}}
+    @endif
+    
     <br/>
     {{Form::label('requirements','Requirements')}}
-    {{Form::textarea('requirements','',['class'=>'form-control'])}}
+    @if($ids)
+        {{Form::textarea("requirements","$ids->requirements",["class"=>"form-control"])}}
+    @else
+        {{Form::textarea('requirements','',['class'=>'form-control'])}}
+    @endif
     <br/>
-    {{ Form::submit('Save',['class'=>'btn btn-default']) }}
+    @if($ids)
+        {{ Form::submit('Update',['class'=>'btn btn-default']) }}
+    @else
+        {{ Form::submit('Save',['class'=>'btn btn-default']) }}
+    @endif
     {{ Form::close() }}
     <br/>
     

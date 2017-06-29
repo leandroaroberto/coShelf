@@ -14,10 +14,9 @@ class makerController extends Controller
         return redirect()->action('HomeController@index');
     }
     
-    public function inventoryList(){
-        /*$products = makerProduct::all();
-        return view('maker.inventoryList')->withProducts($products);*/
-        $products = makerProduct::all();        
+    public function inventoryList(){        
+        //$products = makerProduct::all();        
+        $products = makerProduct::paginate(4);
         return view('maker.inventoryList',array('products'=>$products, 'search'=> null));
     }
     
@@ -28,7 +27,16 @@ class makerController extends Controller
     
     public function addProduct(){
         //show the form
-        return view('maker.newProduct');                
+        //return view('maker.newProduct');                
+        return view('maker.newProduct')->with(['ids'=> null]);                
+    }
+    
+    public function editProduct($id){
+        
+        //echo 'hello';
+        $ids = makerProduct::find($id);
+        return view('maker.newProduct')->with(['ids'=>$ids]);
+        
     }
     
     public function storeProduct(Request $request){
@@ -55,11 +63,18 @@ class makerController extends Controller
     }
     
     public function searchProduct(Request $request){
-        //$products = makerProduct::all();
+        
+        /*$products = makerProduct::where('name','LIKE',
+                '%'.$request->input('lookfor').'%')->orwhere('category',
+                'LIKE','%'.$request->input('lookfor').'%')->get();*/
+        
         $products = makerProduct::where('name','LIKE',
                 '%'.$request->input('lookfor').'%')->orwhere('category',
-                'LIKE','%'.$request->input('lookfor').'%')->get();
+                'LIKE','%'.$request->input('lookfor').'%')->paginate(4);
+
+        
         return view('maker.inventoryList', array('products'=>$products,'search'=>$request->input('lookfor')));
+        
         
         
     }

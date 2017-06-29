@@ -9,7 +9,7 @@
     
     <!--<p>Search Product: <input type="text" /> <span class="glyphicon glyphicon-search"></span></p>-->
     
-    {{ Form::open(['url'=>['/inventoryList/search'],'method'=>'post']) }}
+    {{ Form::open(['url'=>['/inventoryList/search'],'method'=>'get']) }}
     <div class="row">
         <div class="col-lg-12">
             <div class="input-group">
@@ -43,14 +43,17 @@
                     <td>{{ $product->price }}</td>            
                     <td>
                         <a href="/inventoryList/{{$product->product_id}}"><span class="glyphicon glyphicon-search"></span></a>
-                        <span class="glyphicon glyphicon-edit"></span>
+                        <a href="inventoryList/Edit/{{$product->product_id}}"><span class="glyphicon glyphicon-edit"></span></a>
                         <span class="glyphicon glyphicon-remove"></span>
                     </td>
                 </tr>
-            @endforeach
+            @endforeach 
+            
         @endif
     </table>
-
+            
+        {{ $products->links() }}
+    
 
 
 @endsection
